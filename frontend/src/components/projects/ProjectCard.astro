@@ -48,6 +48,7 @@ const {
         flex: 1;
         text-decoration: none;
         transition: border-color 0.3s;
+        height: 100%;
     }
 
     .projectCard:hover {
@@ -99,5 +100,26 @@ const {
         margin: 0;
         display: flex;
         gap: .5rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: .5rem;
+    }
+
+    ul li {
+        color: var(--main-theme-color);
+        padding: .3rem .6rem;
+        border-radius: .3rem;
+        font-size: .9rem;
+        border: 1px solid var(--main-theme-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    ul li:hover {
+        background-color: var(--main-theme-color);
+        color: var(--text-color-inverted);
     }
 </style>

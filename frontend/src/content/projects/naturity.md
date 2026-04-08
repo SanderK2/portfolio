@@ -1,13 +1,13 @@
 ---
 title: "Naturity"
-description: "A research platform for conducting studies"
-date: 2024-03-15
-tags: ["JavaScript", "Next.js", "API"]
+description: "Web store for Naturity Cosmetics"
+date: 2024-07-01
+tags: ["Next.js", "API"]
 thumbnail: "../../assets/images/projects/naturity.png"
 liveUrl: "https://example.com"
 repoUrl: "https://github.com/"
 featured: true
 ---
 
-## Overview
-Full Markdown content for the detailed project page goes here...
+## About Naturity
+More info coming

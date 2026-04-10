@@ -1,6 +1,6 @@
 ---
 title: "Studyfront"
-description: "A research platform for conducting studies"
+description: "A research platform for conducting comparative studies."
 date: 2025-03-15
 tags: ["Next.js", "API"]
 thumbnail: "../../assets/images/projects/studyfront.png"

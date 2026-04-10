@@ -1,6 +1,6 @@
 ---
 title: "Naturity"
-description: "Web store for Naturity Cosmetics"
+description: "Website and Webstore for Naturity Cosmetics."
 date: 2024-07-01
 tags: ["Next.js", "API"]
 thumbnail: "../../assets/images/projects/naturity.png"

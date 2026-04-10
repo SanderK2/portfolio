@@ -1,6 +1,6 @@
 ---
 title: "Yapper"
-description: "A Twitter Clone with a Windows 98/XP interface"
+description: "A Twitter Clone with a Windows 98/XP interface."
 date: 2024-03-15
 tags: ["React", "API"]
 thumbnail: "../../assets/images/projects/yapper.png"

@@ -27,8 +27,8 @@ const { Content } = await render(project);
 				{project.data.tags.map((tag) => <li>{tag}</li>)}
 			</ul>
             <div class="project-links">
-				{project.data.liveUrl && <a href={project.data.liveUrl} target="_blank" rel="noreferrer"><img src="/icons/GitHub_Invertocat_Black.svg" alt="GitHub logo" loading="lazy" /> Live site <img src="/icons/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
-				{project.data.repoUrl && <a href={project.data.repoUrl} target="_blank" rel="noreferrer"><img src="/icons/gicon_globe.svg" alt="Globe icon" loading="lazy" /> Repository <img src="/icons/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
+				{project.data.liveUrl && <a href={project.data.liveUrl} target="_blank" rel="noreferrer"><img src="/gicon_globe.svg" alt="Globe icon" loading="lazy" />Live site<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
+				{project.data.repoUrl && <a href={project.data.repoUrl} target="_blank" rel="noreferrer"><img src="/GitHub_Invertocat_Black.svg" alt="GitHub logo" loading="lazy" />Repository<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
 			</div>
             <div class="project-content">
                 <Content />
@@ -80,10 +80,11 @@ const { Content } = await render(project);
         text-decoration: underline;
         margin-right: 1rem;
         text-underline-offset: .3rem;
+        transition: filter 0.3s;
     }
 
     a:hover {
-        filter: brightness(0.9);
+        filter: brightness(0.7);
     }
 
     a img:first-child {
@@ -97,6 +98,7 @@ const { Content } = await render(project);
         width: 0.9rem;
         height: 0.9rem;
         vertical-align: middle;
+        margin-left: .2rem;
     }
 
     .project-tags {

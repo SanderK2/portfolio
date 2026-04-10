@@ -1,13 +1,13 @@
 ---
 title: "Ellerin"
-description: "AI powered learning platform focusing on pedagogic approaches and cognitive understanding."
+description: "AI powered learning platform focusing on structured approach and cognitive understanding."
 date: 2026-02-01
 tags: ["React", "API"]
 thumbnail: "../../assets/images/projects/ellerin.png"
-liveUrl: "https://example.com"
-repoUrl: "https://github.com/"
+liveUrl: "https://ellerin.no"
+repoUrl: ""
 featured: true
 ---
 
 ## About Ellerin
-Vårt bachelorprosjekt bygger videre på arbeidet vi gjorde i fordypningsprosjektet forrige semester. Dette prosjektet var en litteraturstudie som undersøkte om bruk av KI-genererte sammendrag kan svekke studenters evne til å lære. Studien viste at effekten KI-bruk har i læring, i stor grad avhenger av hvordan teknologien brukes. I bacheloroppgaven brukte vi dette som utgangspunkt, og valgte å utvikle en KI-drevet læringsplattform. Plattformen fungerer gjennom et nettverk av KI-agenter som samarbeider for å sette sammen en strukturert læringsplan for studenter, med mål om å optimalisere læring samtidig som man unngår potensielle negative kognitive effekter av KI-bruk. Dette skjer ved at brukeren først går gjennom en grundig oppsettsprosess, og får opprettet en personlig læreplan som KI-agenten vil bruke for å ta studenten gjennom plantrinnene. Webapplikasjonen utvikles ved hjelp av MERN-stacken.
+Ellerin is the name of the application we developed as part of our bachelor thesis. The project build upon earlier work done in the In-depth Project course previous semester. That project was a literature study that investigated if use of AI-generated summaries can harm students ability to learn. The study shows that the effect that AI has in learning, largely depends on how the technology is used. We used this study as a baseline in our Bachelors thesis, and chose to develop an AI-powered learning platform. The platform works though a network of AI-agents that collaborate to put together a structurized learning plan for students, with a goal of optimizing learning and preventing potential negative cognitive effects of AI use. This happens when the user first goes though a thorough setup process, and gets generated a personal learning plan that the AI-agent will use to take the student though the plan steps. The web application is developed using the MERN-stack.

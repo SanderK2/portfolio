@@ -4,10 +4,10 @@ description: "A Twitter Clone with a Windows 98/XP interface"
 date: 2024-03-15
 tags: ["React", "API"]
 thumbnail: "../../assets/images/projects/yapper.png"
-liveUrl: "https://example.com"
-repoUrl: "https://github.com/"
+liveUrl: "https://yapper-zwai.onrender.com/login"
+repoUrl: "https://github.com/Jakubo0451/YAPPER"
 featured: true
 ---
 
 ## About Yapper
-Yapper ble utviklet som en del av Skyteknologier emnet, hvor vi fikk i oppgave å lage en Twitter-klone. Backenden ble hovedsakelig bygget med Python, der PostgreSQL ble brukt som databasesystem som lagret brukere og yaps (innlegg). Hovedmålet med oppgaven var å lage en applikasjon med stort fokus på avanserte backend-teknologier, som load balancing, caching og reverse-proxy. I frontend kunne vi velge selv hvilken teknologi vi ville bruke, der vi valgte React, som vi hadde god kjennskap til fra før. Siden vi fikk stor frihet til å bygge frontenden, valgte vi å stilisere den basert på gamle operativsystemer som Windows 98/XP, som fungerte bra med tanke på den lave mengden funksjoner brukere har i frontenden.
+Yapper was developed as part of the Cloud Technologies course, where we were tasked to create a Twitter-clone. The backend was mainly built in Python, and PostgreSQL was used as a database system that saved user data and "yaps" (posts/tweets). THe main goal of the task was to create an application with great focus in advanced backend technologies, like load balancing, caching and reverse-proxy. As for the frontend, we could decide the technology ourselves, where we chose React, which we had familiarized ourselves with previously. Since we got large freedom to build the front-end, we chose to style it based on the design of old operative systems like Windows 98 and XP, which worked well considering the low amount of features the front-end had.

@@ -1,0 +1,126 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+	title: string;
+	description: string;
+	thumbnail: ImageMetadata;
+	tags: string[];
+	id: string;
+}
+
+const {
+	title,
+	description,
+	thumbnail,
+	tags,
+	id,
+} = Astro.props;
+---
+
+<article>
+	<a class="projectCard" href={`/projects/${id}/`} aria-label={`View ${title}`}>
+        <div class="media">
+            <Image src={thumbnail} alt={title} loading="lazy" />
+        </div>
+
+        <div class="content">
+            <h2>{title}</h2>
+            <p class="description">{description}</p>
+
+            <ul class="tags" aria-label={`${title} tags`}>
+                {tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+        </div>
+	</a>
+</article>
+
+<style>
+    .projectCard {
+        border: 1px solid var(--ui-divider-color);
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        flex: 1;
+        text-decoration: none;
+        transition: border-color 0.3s;
+        height: 100%;
+    }
+
+    .projectCard:hover {
+        border-color: var(--main-theme-color);
+    }
+
+    h2:before {
+		content: '/';
+		margin-right: -.6rem;
+		transition: margin-right 0.3s, color 0.3s;
+		color: var(--background-color);
+	}
+
+	.projectCard:hover h2:before {
+		margin-right: .2rem;
+		color: var(--text-color-primary);
+	}
+    
+    .media {
+        width: 100%;
+    }
+
+    .media img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    h2 {
+        margin: 0 0 .5rem 0;
+        font-size: 1.5rem;
+        color: var(--text-color-primary);
+        font-weight: 400;
+    }
+
+    p.description {
+        font-size: 1rem;
+        color: var(--text-color-secondary);
+        margin: 0 0 .5rem 0;
+    }
+
+    .tags {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: .5rem;
+    }
+
+    ul li {
+        color: var(--main-theme-color);
+        padding: .3rem .6rem;
+        border-radius: .3rem;
+        font-size: .9rem;
+        border: 1px solid var(--main-theme-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    ul li:hover {
+        background-color: var(--main-theme-color);
+        color: var(--text-color-inverted);
+    }
+</style>

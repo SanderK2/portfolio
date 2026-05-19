@@ -1,11 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+import { Icon } from 'astro-icon/components';
 ---
 
 <BaseLayout>
 	<main>
         <div class="container">
             <h1>Contact me</h1>
+			<article>
+				<p>Want to get in touch? Feel free to reach out to me through any of the following channels:</p>
+				<ul class="contact-links">
+					<li> <a href="mailto:s@sanderb.no"><Icon name="lucide:mail" /> s@sanderb.no</a></li>
+					<li> <a href="https://www.linkedin.com/in/sanderbach/" target="_blank" rel="noopener noreferrer"><Icon name="cib:linkedin" /> LinkedIn</a></li>
+					<li> <a href="https://github.com/SanderK2" target="_blank" rel="noopener noreferrer"><Icon name="cib:github" /> GitHub</a></li>
+				</ul>
+			</article>
         </div>
 	</main>
 </BaseLayout>
@@ -26,15 +36,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         margin: 0 auto;
     }
 
-	.projects {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 2rem;
+	article {
+		border: solid 2px var(--ui-divider-color);
+        padding: 2rem;
+        border-radius: 8px;
+	}
+
+	.contact-links {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		gap: .5rem;
+		flex-wrap: wrap;
+	}
+
+	.contact-links li {
+		font-size: 1.2rem;
+		color: var(--text-color-primary);
+		display: inline-block;
+	}
+
+	.contact-links a {
+		color: var(--main-theme-color);
+		text-decoration: none;
+		text-underline-offset: 4px;
+		border: 1px solid var(--main-theme-color);
+		padding: .5rem 1rem;
+		border-radius: .3rem;
+		transition: background-color 0.3s, color 0.3s;
+		display: inline-flex;
+		align-items: center;
+		gap: .5rem;
+	}
+
+	.contact-links a:hover {
+		text-decoration: underline;
+	}
+
+	.contact-links svg {
+		width: 1.2rem;
+		height: 1.2rem;
+		color: var(--main-theme-color);
 	}
 
 	@media (max-width: 720px) {
-		.projects {
-			grid-template-columns: 1fr;
+		.container {
+			max-width: 90vw;
 		}
 	}
 </style>

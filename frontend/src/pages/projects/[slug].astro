@@ -19,7 +19,7 @@ const { Content } = await render(project);
 <BaseLayout>
 	<main>
 		<article>
-			<p>Project</p>
+			<p class="breadcrumb"><a href="/projects" class="breadcrumb-link">Projects</a> /</p>
 			<h1>{project.data.title}</h1>
 			<Image src={project.data.thumbnail} alt={project.data.title} />
 			<p>{project.data.description}</p>
@@ -59,6 +59,7 @@ const { Content } = await render(project);
         color: var(--text-color-primary);
         margin-bottom: 1rem;
         font-size: 2.5rem;
+        margin-top: .5rem;
     }
 
     h2 {
@@ -73,6 +74,10 @@ const { Content } = await render(project);
         font-size: 1.1rem;
         line-height: 1.6;
         color: var(--text-color-secondary);
+    }
+
+    .breadcrumb {
+        margin-bottom: 0;
     }
 
     a {
@@ -106,6 +111,7 @@ const { Content } = await render(project);
         padding: 0;
         display: flex;
         gap: .5rem;
+        flex-wrap: wrap;
     }
 
     .project-tags li {
@@ -156,6 +162,26 @@ const { Content } = await render(project);
         color: var(--text-color-secondary);
         border: 0;
         padding: 0;
+    }
+
+    .breadcrumb-link {
+        color: var(--text-color-secondary);
+        text-decoration: none;
+        margin-right: 0;
+    }
+
+    .breadcrumb-link:hover {
+        text-decoration: underline;
+    }
+
+    .project-content :global(img) {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        max-height: 60vh;
+        height: auto;
+        margin: 1.5rem auto;
+        object-fit: contain;
     }
 
     @media (max-width: 720px) {

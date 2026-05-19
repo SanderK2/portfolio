@@ -8,12 +8,36 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 	<div id="header-right">
 		<a href="/"><img src="/SVB_logo.svg" alt="Logo" width="50" height="50" /></a>
 	</div>
-	<div id="header-left">
+	<nav id="header-left">
 		<a href="/projects" class:list={{ current: isCurrent('/projects') }}>Projects</a>
 		<a href="/about" class:list={{ current: isCurrent('/about') }}>About</a>
 		<a href="/contact" class:list={{ current: isCurrent('/contact') }}>Contact</a>
-	</div>
+	</nav>
+	<nav id="burger-menu">
+		<!-- Burger menu implementation for mobile view -->
+		<div class="burger-icon" aria-label="Menu" role="button" tabindex="0">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="burger-menu-content" aria-label="Mobile menu" role="menu">
+			<a href="/projects" class:list={{ current: isCurrent('/projects') }}>Projects</a>
+			<a href="/about" class:list={{ current: isCurrent('/about') }}>About</a>
+			<a href="/contact" class:list={{ current: isCurrent('/contact') }}>Contact</a>
+		</div>
+	</nav>
 </header>
+
+<script>
+	const burgerIcon = document.querySelector('.burger-icon');
+	const burgerMenuContent = document.querySelector('.burger-menu-content');
+	const burgerMenuIcon = document.querySelector('.burger-icon');
+
+	burgerIcon?.addEventListener('click', () => {
+		burgerMenuContent?.classList.toggle('active');
+		burgerMenuIcon?.classList.toggle('active');
+	});
+</script>
 
 <style>
 	#header {
@@ -35,7 +59,7 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		transition: color 0.3s;
 	}
 
-	#header-left a:before {
+	#header-left a:before, .burger-menu-content a:before {
 		content: '/';
 		position: absolute;
 		color: var(--background-color);
@@ -52,8 +76,80 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		color: var(--main-theme-color);
 	}
 
-	#header-left a.current:before {
+	#header-left a.current:before, .burger-menu-content a.current:before {
 		color: var(--main-theme-color);
 		transform: translateX(-0.6rem);
+	}
+
+	#burger-menu {
+		display: none;
+	}
+
+	.burger-icon {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		cursor: pointer;
+		z-index: 1000;
+	}
+
+	.burger-icon span {
+		width: 25px;
+		height: 3px;
+		background-color: var(--text-color-primary);
+		border-radius: 2px;
+		transition: transform 0.3s, opacity 0.3s;
+	}
+
+	.burger-icon.active span:nth-child(1) {
+		transform: rotate(45deg) translate(5px, 6px);
+	}
+
+	.burger-icon.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.burger-icon.active span:nth-child(3) {
+		transform: rotate(-45deg) translate(5px, -6px);
+	}
+
+	.burger-menu-content {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 70px;
+		right: 0;
+		background-color: var(--background-color);
+		width: 100vw;
+		height: calc(100vh - 70px);
+		z-index: 999;
+		overflow-y: auto;
+		border-bottom: 1px solid var(--ui-divider-color);
+	}
+
+	.burger-menu-content.active {
+		display: flex;
+	}
+
+	.burger-menu-content a {
+		color: var(--text-color-primary);
+		text-decoration: none;
+		padding: 2rem;
+		border-bottom: 1px solid var(--ui-divider-color);
+		text-align: center;
+	}
+
+	.burger-menu-content a.current {
+		color: var(--main-theme-color);
+	}
+
+	@media (max-width: 500px) {
+		#header-left {
+			display: none;
+		}
+
+		#burger-menu {
+			display: block;
+		}
 	}
 </style>

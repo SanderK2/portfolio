@@ -13,7 +13,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<p>While you're here, why not take a look at some of my work?</p>
 			</div>
 			<div class="links">
-				<a href="/projects">View <span>Projects</span></a>
+				<a href="/projects">-> View my <span>Projects</span></a>
 				<a href="/about"><span>About</span> me</a>
 				<a href="/contact"><span>Contact</span> me</a>
 			</div>
@@ -32,10 +32,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 	.container {
 		max-width: 60vw;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
 	}
 
 	.hero {
-		height: 20rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -59,8 +61,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	p {
 		font-size: 1.1rem;
 		color: var(--text-color-primary);
-		margin: .2rem 0;
+		margin: .1rem 0;
 		font-weight: 300;
+		line-height: 1.6;
 	}
 
 	.links {
@@ -78,6 +81,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		flex: 1;
 		text-align: center;
 		transition: border-color 0.3s, border-radius 0.3s;
+		align-content: center;
 	}
 
 	a:hover {
@@ -97,7 +101,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		color: var(--text-color-primary);
 	}
 
+	a:first-child {
+		background-color: var(--main-theme-color-secondary);
+		color: white;
+		border-color: var(--main-theme-color);
+	}
+
+	a:first-child span:before {
+		content: '/';
+		margin-right: -.3rem;
+		transition: margin-right 0.3s, color 0.3s;
+		color: var(--main-theme-color-secondary);
+	}
+
+	a:first-child:hover span:before {
+		margin-right: .1rem;
+		color: var(--text-color-inverted);
+	}
+
 	h1 span {
-		font-weight: 200;
+		font-weight: 100;
+		color: #797979;
+	}
+
+	@media (max-width: 800px) {
+		.container {
+			max-width: 90vw;
+		}
+
+		h1 {
+			font-size: 2.5rem;
+		}
+
+		h2 {
+			margin-top: .5rem;
+		}
+
+		.links {
+			flex-direction: column;
+		}
 	}
 </style>

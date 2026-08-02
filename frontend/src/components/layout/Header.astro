@@ -1,31 +1,78 @@
 ---
+import { Icon } from 'astro-icon/components';
 const pathname = Astro.url.pathname;
-const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+const locale = Astro.currentLocale ?? 'en';
+const prefix = locale === 'nb' ? '/nb' : '';
 
+const normalizePath = (value: string) => value.replace(/\/+$/, '');
+
+const isCurrent = (href: string) => {
+    const currentPath = normalizePath(pathname);
+    const targetPath = normalizePath(href);
+    const currentBare = currentPath.startsWith('/nb') ? currentPath.replace(/^\/nb/, '') || '/' : currentPath;
+    const targetBare = targetPath.startsWith('/nb') ? targetPath.replace(/^\/nb/, '') || '/' : targetPath;
+
+    return currentPath === targetPath || currentBare === targetBare || currentPath.startsWith(`${targetPath}/`) || currentBare.startsWith(`${targetBare}/`);
+};
+
+const labels = {
+    projects: locale === 'nb' ? 'Prosjekter' : 'Projects',
+    about: locale === 'nb' ? 'Om' : 'About',
+    contact: locale === 'nb' ? 'Kontakt' : 'Contact',
+};
+
+const links = {
+    home: locale === 'nb' ? '/nb' : '/',
+    projects: `${prefix}/projects`,
+    about: `${prefix}/about`,
+    contact: `${prefix}/contact`,
+};
+
+const currentPagePath = pathname.replace(/^\/nb/, '') || '/';
+
+const languageSwitch = {
+    label: locale === 'nb' ? 'Switch to English | Bytt til Engelsk' : 'Bytt til Norsk Bokmål | Switch to Norwegian Bokmål',
+    href: locale === 'nb'
+        ? currentPagePath
+        : `/nb${currentPagePath === '/' ? '' : currentPagePath}`,
+    icon: locale === 'nb' ? 'circle-flags:en' : 'circle-flags:nb',
+};
 ---
 
 <header id="header">
-	<div id="header-right">
-		<a href="/"><img src="/SVB_logo.svg" alt="Logo" width="50" height="50" /></a>
-	</div>
-	<nav id="header-left">
-		<a href="/projects" class:list={{ current: isCurrent('/projects') }}>Projects</a>
-		<a href="/about" class:list={{ current: isCurrent('/about') }}>About</a>
-		<a href="/contact" class:list={{ current: isCurrent('/contact') }}>Contact</a>
-	</nav>
-	<nav id="burger-menu">
-		<!-- Burger menu implementation for mobile view -->
-		<div class="burger-icon" aria-label="Menu" role="button" tabindex="0">
-			<span></span>
-			<span></span>
-			<span></span>
+    <div id="header-right">
+        <a href={links.home}>
+            <img src="/SVB_logo.svg" alt="Logo" width="50" height="50" />
+        </a>
+    </div>
+
+    <nav id="header-left">
+		<div>
+			<a href={links.projects} class:list={{ current: isCurrent(links.projects) }}>{labels.projects}</a>
+			<a href={links.about} class:list={{ current: isCurrent(links.about) }}>{labels.about}</a>
+			<a href={links.contact} class:list={{ current: isCurrent(links.contact) }}>{labels.contact}</a>
+			
 		</div>
-		<div class="burger-menu-content" aria-label="Mobile menu" role="menu">
-			<a href="/projects" class:list={{ current: isCurrent('/projects') }}>Projects</a>
-			<a href="/about" class:list={{ current: isCurrent('/about') }}>About</a>
-			<a href="/contact" class:list={{ current: isCurrent('/contact') }}>Contact</a>
-		</div>
-	</nav>
+		<a class="language" title={languageSwitch.label} href={languageSwitch.href}><Icon name={languageSwitch.icon} /></a>
+    </nav>
+	
+
+    <nav id="burger-menu">
+        <div class="burger-icon" aria-label="Menu" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="burger-menu-content" aria-label="Mobile menu" role="menu">
+            <a href={links.projects} class:list={{ current: isCurrent(links.projects) }}>{labels.projects}</a>
+            <a href={links.about} class:list={{ current: isCurrent(links.about) }}>{labels.about}</a>
+            <a href={links.contact} class:list={{ current: isCurrent(links.contact) }}>{labels.contact}</a>
+			<a class="language" title={languageSwitch.label} href={languageSwitch.href}>
+				<Icon name={languageSwitch.icon} />
+			</a>
+        </div>
+    </nav>
 </header>
 
 <script>
@@ -48,6 +95,11 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		justify-content: space-between;
 		align-items: center;
     }
+
+	#header-left {
+		display: flex;
+		align-items: center;
+	}
 
 	#header-left a {
 		color: var(--text-color-primary);
@@ -79,6 +131,15 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 	#header-left a.current:before, .burger-menu-content a.current:before {
 		color: var(--main-theme-color);
 		transform: translateX(-0.6rem);
+	}
+
+	#header-left .language:before {
+		content: '';
+	}
+
+	#header-left .language {
+		font-size: 1.2rem;
+		padding: 0.5rem 0.3rem 0.1rem 0.3rem;
 	}
 
 	#burger-menu {

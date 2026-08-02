@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: { project },
+	}));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout>
+	<main>
+		<article>
+			<p class="breadcrumb"><a href="/projects" class="breadcrumb-link">Prosjekter</a> /</p>
+			<h1>{project.data.title}</h1>
+			<Image src={project.data.thumbnail} alt={project.data.title} />
+			<p>{project.data.description}</p>
+            <ul class="project-tags">
+				{project.data.tags.map((tag) => <li>{tag}</li>)}
+			</ul>
+            <div class="project-links">
+				{project.data.liveUrl && <a href={project.data.liveUrl} target="_blank" rel="noreferrer"><img src="/gicon_globe.svg" alt="Globe icon" loading="lazy" />Live site<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
+				{project.data.repoUrl && <a href={project.data.repoUrl} target="_blank" rel="noreferrer"><img src="/GitHub_Invertocat_Black.svg" alt="GitHub logo" loading="lazy" />Repository<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
+			</div>
+            <div class="project-content">
+                <Content />
+            </div>
+		</article>
+	</main>
+</BaseLayout>
+
+<style>
+    main {
+        padding: 2rem;
+    }
+
+    article {
+        max-width: 60vw;
+        margin: 0 auto;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+
+    h1 {
+        font-weight: 400;
+        color: var(--text-color-primary);
+        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        margin-top: .5rem;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--main-theme-color);
+        font-weight: 300;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: var(--text-color-secondary);
+    }
+
+    .breadcrumb {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: var(--link-color);
+        text-decoration: underline;
+        margin-right: 1rem;
+        text-underline-offset: .3rem;
+        transition: filter 0.3s;
+    }
+
+    a:hover {
+        filter: brightness(0.7);
+    }
+
+    a img:first-child {
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: middle;
+        margin-right: .3rem;
+    }
+
+    a img:last-child {
+        width: 0.9rem;
+        height: 0.9rem;
+        vertical-align: middle;
+        margin-left: .2rem;
+    }
+
+    .project-tags {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+    }
+
+    .project-tags li {
+        color: var(--main-theme-color);
+        padding: .3rem .6rem;
+        border-radius: .3rem;
+        font-size: .9rem;
+        border: 1px solid var(--main-theme-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .project-tags li:hover {
+        background-color: var(--main-theme-color);
+        color: var(--text-color-inverted);
+    }
+
+    .project-content {
+        margin-top: 2rem;
+    }
+
+    .project-content :global(h2) {
+        margin: 2rem 0 1rem;
+        font-size: 1.5rem;
+        color: var(--text-color-primary);
+        font-weight: 300;
+    }
+
+    .project-content :global(p) {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: var(--text-color-secondary);
+    }
+
+    .project-content :global(a) {
+        color: var(--link-color);
+        text-decoration: underline;
+        text-underline-offset: .3rem;
+    }
+
+    .project-content :global(ul) {
+        list-style: disc;
+        padding-left: 1.5rem;
+        display: block;
+    }
+
+    .project-content :global(li) {
+        margin-bottom: .4rem;
+        color: var(--text-color-secondary);
+        border: 0;
+        padding: 0;
+    }
+
+    .breadcrumb-link {
+        color: var(--text-color-secondary);
+        text-decoration: none;
+        margin-right: 0;
+    }
+
+    .breadcrumb-link:hover {
+        text-decoration: underline;
+    }
+
+    .project-content :global(img) {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        max-height: 60vh;
+        height: auto;
+        margin: 1.5rem auto;
+        object-fit: contain;
+    }
+
+    @media (max-width: 720px) {
+        article {
+            max-width: 90vw;
+        }
+    }
+
+</style>

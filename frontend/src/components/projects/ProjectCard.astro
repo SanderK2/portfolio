@@ -17,10 +17,14 @@ const {
 	tags,
 	id,
 } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const localePrefix = pathname.startsWith('/nb') ? '/nb' : '';
+const projectHref = `${localePrefix}/projects/${id}/`;
 ---
 
 <article>
-	<a class="projectCard" href={`/projects/${id}/`} aria-label={`View ${title}`}>
+	<a class="projectCard" href={projectHref} aria-label={`View ${title}`}>
         <div class="media">
             <Image src={thumbnail} alt={title} loading="lazy" />
         </div>

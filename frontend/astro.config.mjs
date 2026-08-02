@@ -12,5 +12,16 @@ export default defineConfig({
       cssVariable: "--font-inter",
   }],
 
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "nb"],
+    fallback: {
+      nb: "en"
+    },
+    routing: {
+      fallbackType: "rewrite"
+    }
+  },
+
   integrations: [icon()]
 });

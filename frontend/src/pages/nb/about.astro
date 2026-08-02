@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import photo from '../../assets/images/photos/sander-vinkler-bach-bw.jpg';
+
+import { Icon } from 'astro-icon/components';
+---
+
+<BaseLayout>
+	<main>
+        <div class="container">
+            <h1>Om meg</h1>
+            <div class="hero">
+                <Image src={photo} alt="Sander Vinkler Bach in Black and White" loading="eager" quality={'low'} />
+                <div class="info">
+                    <h2>Heisann, Sander her!</h2>
+                    <p><Icon name="lucide:house" /> Født og oppvokst i Trondheim, Norge.</p>
+                    <p><Icon name="lucide:graduation-cap" /> Nylig fullført bachelorgrad i webutvikling ved NTNU.</p>
+                    <p><Icon name="lucide:code" /> Jeg har en lidenskap for å bygge moderne webapplikasjoner med fokus på brukeropplevelse, ytelse og bærekraft.</p>
+                </div>
+            </div>
+            <article>
+                <h2>Mine ferdigheter</h2>
+                <section class="skills">
+                    <h3>Språk</h3>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                    </ul>
+                </section>
+                <section class="skills">
+                    <h3>Rammeverker & Biblioteker</h3>
+                    <ul>
+                        <li>React</li>
+                        <li>Next.js</li>
+                        <li>Vue</li>
+                        <li>Astro</li>
+                        <li>Node.js</li>
+                        <li>Express</li>
+                    </ul>
+                </section>
+                <section class="skills">
+                    <h3>Databaser</h3>
+                    <ul>
+                        <li>MongoDB</li>
+                        <li>MySQL</li>
+                    </ul>
+                </section>
+                <section class="skills">
+                    <h3>DevOps & Verktøy</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>Docker</li>
+                        <li>CI/CD</li>
+                        
+                    </ul>
+                </section>
+                <section class="skills">
+                    <h3>Design & Kreativt</h3>
+                    <ul>
+                        <li>Figma</li>
+                        <li>Adobe Photoshop</li>
+                        <li>Adobe Illustrator</li>
+                        <li>Adobe Premiere Pro</li>
+                    </ul>
+                </section>
+            </article>
+            <article>
+                <h2>Om nettsiden</h2>
+                <p><Icon name="lucide:info" /> Bygget av meg.</p>
+                <p><Icon name="lucide:code" /> Bygget med Astro, en modern åpen kildekode statisk nettsted generator som sikrer en rask og optimaliseret opplevelse for besøkende.</p>
+                <p><Icon name="lucide:map-pin" /> Kjører på servere i Oslo, Norge.</p>
+                <p><Icon name="lucide:leaf" /> Kjører på grønn energi - verifisert av <a href="https://www.thegreenwebfoundation.org/green-web-check/?url=https%3A%2F%2Fsanderb.no" target="_blank" rel="noopener noreferrer">thegreenwebfoundation.org</a></p>
+                <img src="https://app.greenweb.org/api/v3/greencheckimage/sanderb.no?nocache=true" alt="This website runs on green hosting - verified by thegreenwebfoundation.org" width="200px" height="95px">
+            </article>
+        </div>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		padding: 2rem;
+	}
+
+    h1 {
+        font-weight: 400;
+        color: var(--text-color-primary);
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        color: var(--main-theme-color);
+        font-weight: 300;
+        margin-bottom: 2rem;
+    }
+
+    .container {
+        max-width: 60vw;
+        margin: 0 auto;
+    }
+
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+        text-underline-offset: 4px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .hero img {
+        width: min(300px, 100%);
+        aspect-ratio: 1 / 1;
+        height: auto;
+        object-fit: cover;
+        border-radius: 50%;
+        max-width: 100%;
+        display: block;
+    }
+
+    .info p {
+        font-size: 1.1rem;
+        color: var(--text-color-primary);
+        font-weight: 500;
+        line-height: 1.5;
+        margin: .8rem .5rem;
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+    }
+
+    .info p svg {
+        min-width: 1.4rem;
+        min-height: 1.4rem;
+        color: var(--main-theme-color);
+    }
+
+    .hero {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        border: solid 2px var(--ui-divider-color);
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    article {
+        margin-top: 2rem;
+    }
+
+    article p {
+        line-height: 1.5;
+        margin: .8rem 0;
+    }
+
+    article h2 {
+        margin-top: 3rem;
+    }
+
+    article p svg {
+        color: var(--main-theme-color);
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right: .5rem;
+        display: inline-block;
+        vertical-align: -0.18em;
+    }
+
+    .skills {
+        margin-bottom: 1.5rem;
+    }
+
+    .skills h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--text-color-primary);
+        font-weight: 400;
+    }
+
+    .skills ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+    }
+
+    .skills ul li {
+        background-color: var(--main-theme-color-secondary);
+        padding: .3rem .6rem;
+        border-radius: .3rem;
+        font-size: .9rem;
+        color: var(--text-color-inverted);
+    }
+
+    @media (max-width: 1000px) {
+        .hero {
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 90vw;
+        }
+    }
+</style>

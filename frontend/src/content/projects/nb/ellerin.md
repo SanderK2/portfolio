@@ -1,6 +1,6 @@
 ---
 title: "Ellerin"
-description: "KI drevet lærings plattform fokusert på strukturert tilnærming og kognitiv forståelse."
+description: "KI-drevet læringsplattform fokusert på strukturert tilnærming og kognitiv forståelse."
 date: 2026-02-01
 tags: ["React", "Sass", "Node", "Express", "MongoDB", "ClaudeSDK"]
 thumbnail: "../../../assets/images/projects/ellerin.png"
@@ -10,21 +10,21 @@ featured: true
 ---
 
 ## Om Ellerin
-Ellerin is the name of the application we developed as part of our bachelor thesis. The project build upon earlier work done in the In-depth Project course previous semester. That project was a literature study that investigated if use of AI-generated summaries can harm students ability to learn. The study shows that the effect that AI has in learning, largely depends on how the technology is used. We used this study as a baseline in our Bachelors thesis, and chose to develop an AI-powered learning platform. 
+Ellerin er navnet til applikasjonen vi utviklet som del av gruppen min sin bacheloroppgave. Prosjektet bygger på tidligere arbeid i fordypningsprosjekt emnet høsten 2025. Prosjektet var en litteraturstudie som undersøkte om bruk av KI-genererte oppsummeringer kan hindre studenters evne til å lære. Studien viste at effekten AI har på læring, avhenger i stor grad om hvordan teknologien ble brukt. Vi brukte denne studien som et utgangspunkt i vår bacheloroppgave, og valgte å utvikle en KI-drevet læringsplattform.
 
-The platform works though a network of AI-agents that collaborate to put together a structurized learning plan for students, with a goal of optimizing learning and preventing potential negative cognitive effects of AI use. This happens when the user first goes though a thorough setup process, and gets generated a personal learning plan that the AI-agent will use to take the student though the plan steps. The web application is developed using the MERN-stack.
+Plattformen fungerer gjennom et nettverk av KI-agenter som samarbeider om å sette sammen en strukturert læringsplan for studenter, med et mål om å optimalisere læring og forebygge potensielle negative kognitive effekter av bruk av kunstig intelligens. Dette skjer når brukeren først gjennomgår en grundig oppstartsprosess og får utarbeidet en personlig læringsplan, som KI-agenten deretter bruker for å veilede studenten gjennom planens ulike trinn. Applikasjonen er utviklet ved hjelp av MERN-stacken.
 
 ![Ellerin Landing Page](../../../assets/images/projects/ellerin/ellerin_home.png)
-<p style="text-align: center;"><strong>Ellerin Landing page</strong></p>
+<p style="text-align: center;"><strong>Ellerin Landingsside</strong></p>
 
 ![Ellerin Setup page](../../../assets/images/projects/ellerin/ellerin_setup.png)
-<p style="text-align: center;"><strong>Ellerin Setup page</strong></p>
+<p style="text-align: center;"><strong>Ellerin Oppsettsside</strong></p>
 
 ![Ellerin Lecture page](../../../assets/images/projects/ellerin/ellerin_lecture.png)
-<p style="text-align: center;"><strong>Ellerin Lecture page</strong></p>
+<p style="text-align: center;"><strong>Ellerin Forelesningsside</strong></p>
 
 ![Ellerin Explanation menu](../../../assets/images/projects/ellerin/ellerin_explanation.png)
-<p style="text-align: center;"><strong>Ellerin Explanation menu</strong></p>
+<p style="text-align: center;"><strong>Ellerin Forklaringsmeny</strong></p>
 
 ![Ellerin User Flow diagram](../../../assets/images/projects/ellerin/ellerin_user_flow.png)
-<p style="text-align: center;"><strong>Ellerin User Flow diagram</strong></p>
+<p style="text-align: center;"><strong>Ellerin Flytdiagram for brukerreisen</strong></p>

@@ -31,11 +31,12 @@ const links = {
 const currentPagePath = pathname.replace(/^\/nb/, '') || '/';
 
 const languageSwitch = {
-    label: locale === 'nb' ? 'Switch to English | Bytt til Engelsk' : 'Bytt til Norsk Bokmål | Switch to Norwegian Bokmål',
+    label: locale === 'nb' ? 'Switch to English' : 'Bytt til Norsk Bokmål',
     href: locale === 'nb'
         ? currentPagePath
         : `/nb${currentPagePath === '/' ? '' : currentPagePath}`,
     icon: locale === 'nb' ? 'circle-flags:en' : 'circle-flags:nb',
+	icon_mobile: locale === 'nb' ? 'circle-flags:gb' : 'circle-flags:no',
 };
 ---
 
@@ -68,8 +69,8 @@ const languageSwitch = {
             <a href={links.projects} class:list={{ current: isCurrent(links.projects) }}>{labels.projects}</a>
             <a href={links.about} class:list={{ current: isCurrent(links.about) }}>{labels.about}</a>
             <a href={links.contact} class:list={{ current: isCurrent(links.contact) }}>{labels.contact}</a>
-			<a class="language" title={languageSwitch.label} href={languageSwitch.href}>
-				<Icon name={languageSwitch.icon} />
+			<a class="language-mobile" title={languageSwitch.label} href={languageSwitch.href}>
+				<Icon name={languageSwitch.icon_mobile} /> {languageSwitch.label}
 			</a>
         </div>
     </nav>
@@ -140,6 +141,11 @@ const languageSwitch = {
 	#header-left .language {
 		font-size: 1.2rem;
 		padding: 0.5rem 0.3rem 0.1rem 0.3rem;
+		transition: filter 0.3s;
+	}
+
+	#header-left .language:hover {
+		filter: brightness(0.9);
 	}
 
 	#burger-menu {
@@ -203,6 +209,20 @@ const languageSwitch = {
 	.burger-menu-content a.current {
 		color: var(--main-theme-color);
 	}
+
+	.language-mobile {
+		display: flex;
+		justify-content: center;
+		gap: 0.4rem;
+		margin-top: auto;
+		border-top: 1px solid var(--ui-divider-color);
+	}
+
+	.language-mobile svg {
+		font-size: 1.2rem;
+	}
+
+
 
 	@media (max-width: 500px) {
 		#header-left {

@@ -7,7 +7,7 @@ interface Props {
 	description: string;
 	thumbnail: ImageMetadata;
 	tags: string[];
-	id: string;
+    slug: string;
 }
 
 const {
@@ -15,12 +15,12 @@ const {
 	description,
 	thumbnail,
 	tags,
-	id,
+    slug,
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const localePrefix = pathname.startsWith('/nb') ? '/nb' : '';
-const projectHref = `${localePrefix}/projects/${id}/`;
+const projectHref = `${localePrefix}/projects/${slug}/`;
 ---
 
 <article>

@@ -69,7 +69,7 @@ const languageSwitch = {
             <a href={links.projects} class:list={{ current: isCurrent(links.projects) }}>{labels.projects}</a>
             <a href={links.about} class:list={{ current: isCurrent(links.about) }}>{labels.about}</a>
             <a href={links.contact} class:list={{ current: isCurrent(links.contact) }}>{labels.contact}</a>
-			<a class="language-mobile" title={languageSwitch.label} href={languageSwitch.href}>
+			<a id="language-mobile" title={languageSwitch.label} href={languageSwitch.href}>
 				<Icon name={languageSwitch.icon_mobile} /> {languageSwitch.label}
 			</a>
         </div>
@@ -82,8 +82,20 @@ const languageSwitch = {
 	const burgerMenuIcon = document.querySelector('.burger-icon');
 
 	burgerIcon?.addEventListener('click', () => {
-		burgerMenuContent?.classList.toggle('active');
-		burgerMenuIcon?.classList.toggle('active');
+		
+		if (burgerMenuContent?.classList.contains('active')) {
+			burgerMenuContent?.classList.remove('active-height');
+			burgerMenuIcon?.classList.remove('active');
+			setTimeout(() => {
+				burgerMenuContent?.classList.remove('active');
+			}, 200);
+		} else {
+			burgerMenuContent?.classList.add('active');
+			burgerMenuIcon?.classList.add('active');
+			setTimeout(() => {
+				burgerMenuContent?.classList.add('active-height');
+			}, 0);
+		}
 	});
 </script>
 
@@ -165,7 +177,7 @@ const languageSwitch = {
 		height: 3px;
 		background-color: var(--text-color-primary);
 		border-radius: 2px;
-		transition: transform 0.3s, opacity 0.3s;
+		transition: transform 0.2s, opacity 0.2s;
 	}
 
 	.burger-icon.active span:nth-child(1) {
@@ -188,14 +200,19 @@ const languageSwitch = {
 		right: 0;
 		background-color: var(--background-color);
 		width: 100vw;
-		height: calc(100vh - 70px);
+		height: 0;
 		z-index: 999;
 		overflow-y: auto;
-		border-bottom: 1px solid var(--ui-divider-color);
+		
+		transition: height 0.2s ease;
 	}
 
 	.burger-menu-content.active {
 		display: flex;
+	}
+
+	.burger-menu-content.active-height {
+		height: calc(100vh - 70px);
 	}
 
 	.burger-menu-content a {
@@ -210,7 +227,7 @@ const languageSwitch = {
 		color: var(--main-theme-color);
 	}
 
-	.language-mobile {
+	#language-mobile {
 		display: flex;
 		justify-content: center;
 		gap: 0.4rem;
@@ -218,7 +235,7 @@ const languageSwitch = {
 		border-top: 1px solid var(--ui-divider-color);
 	}
 
-	.language-mobile svg {
+	#language-mobile svg {
 		font-size: 1.2rem;
 	}
 

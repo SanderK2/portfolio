@@ -212,7 +212,8 @@ const languageSwitch = {
 	}
 
 	.burger-menu-content.active-height {
-		height: calc(100vh - 70px);
+		height: calc(100vh - 70px); /* fallback for older browsers */
+		height: calc(100dvh - 70px);
 	}
 
 	.burger-menu-content a {

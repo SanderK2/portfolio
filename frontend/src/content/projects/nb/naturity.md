@@ -5,7 +5,7 @@ date: 2022-12-15
 tags: ["Next.js", "Vue", "JS Buy SDK"]
 thumbnail: "../../../assets/images/projects/naturity.png"
 liveUrl: ""
-repoUrl: ""
+repoUrl: "https://github.com/SanderK2/naturity-next"
 featured: true
 ---
 

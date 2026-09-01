@@ -5,7 +5,7 @@ date: 2026-02-01
 tags: ["React", "Sass", "Node", "Express", "MongoDB", "ClaudeSDK"]
 thumbnail: "../../assets/images/projects/ellerin.png"
 liveUrl: "https://ellerin.no"
-repoUrl: ""
+repoUrl: "https://github.com/Jakubo0451/bachelor-thesis"
 featured: true
 ---
 

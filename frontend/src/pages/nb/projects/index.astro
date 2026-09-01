@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 import { getCollection } from 'astro:content';
-import ProjectCard from '../../components/projects/ProjectCard.astro';
+import ProjectCard from '../../../components/projects/ProjectCard.astro';
 
-const projects = await getCollection('projects', ({ id }) => !id.startsWith('nb/'));
+const projects = await getCollection('projects', ({ id }) => id.startsWith('nb/'));
 const sorted = projects
 	.filter((project) => project.data.featured)
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -13,7 +13,7 @@ const sorted = projects
 <BaseLayout>
 	<main>
         <div class="container">
-            <h1>My projects</h1>
+            <h1>Mine prosjekter</h1>
             <div class="projects">
                 {sorted.map((project) => (
                     <ProjectCard
@@ -21,7 +21,7 @@ const sorted = projects
                         description={project.data.description}
                         thumbnail={project.data.thumbnail}
                         tags={project.data.tags}
-                        slug={project.id}
+                        slug={project.id.replace(/^nb\//, '')}
                     />
                 ))}
             </div>

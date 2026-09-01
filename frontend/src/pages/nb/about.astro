@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import photo from '../assets/images/photos/sander-vinkler-bach-bw.jpg';
+import photo from '../../assets/images/photos/sander-vinkler-bach-bw.jpg';
 
 import { Icon } from 'astro-icon/components';
 ---
@@ -9,20 +9,20 @@ import { Icon } from 'astro-icon/components';
 <BaseLayout>
 	<main>
         <div class="container">
-            <h1>About me</h1>
+            <h1>Om meg</h1>
             <div class="hero">
                 <Image src={photo} alt="Sander Vinkler Bach in Black and White" loading="eager" quality={'low'} />
                 <div class="info">
-                    <h2>Hey there, I'm Sander!</h2>
-                    <p><Icon name="lucide:house" /> Born and raised in Trondheim, Norway.</p>
-                    <p><Icon name="lucide:graduation-cap" /> Newly finished my Bachelor's degree in Web Development at NTNU.</p>
-                    <p><Icon name="lucide:code" /> I have a passion for building modern web applications with a focus on user experience, performance and sustainability.</p>
+                    <h2>Heisann, Sander her!</h2>
+                    <p><Icon name="lucide:house" /> Født og oppvokst i Trondheim, Norge.</p>
+                    <p><Icon name="lucide:graduation-cap" /> Nylig fullført bachelorgrad i webutvikling ved NTNU.</p>
+                    <p><Icon name="lucide:code" /> Jeg har en lidenskap for å bygge moderne webapplikasjoner med fokus på brukeropplevelse, ytelse og bærekraft.</p>
                 </div>
             </div>
             <article>
-                <h2>My skills</h2>
+                <h2>Mine ferdigheter</h2>
                 <section class="skills">
-                    <h3>Languages</h3>
+                    <h3>Språk</h3>
                     <ul>
                         <li>JavaScript</li>
                         <li>Python</li>
@@ -31,7 +31,7 @@ import { Icon } from 'astro-icon/components';
                     </ul>
                 </section>
                 <section class="skills">
-                    <h3>Frameworks & Libraries</h3>
+                    <h3>Rammeverker & Biblioteker</h3>
                     <ul>
                         <li>React</li>
                         <li>Next.js</li>
@@ -42,14 +42,14 @@ import { Icon } from 'astro-icon/components';
                     </ul>
                 </section>
                 <section class="skills">
-                    <h3>Databases</h3>
+                    <h3>Databaser</h3>
                     <ul>
                         <li>MongoDB</li>
                         <li>MySQL</li>
                     </ul>
                 </section>
                 <section class="skills">
-                    <h3>DevOps & Tooling</h3>
+                    <h3>DevOps & Verktøy</h3>
                     <ul>
                         <li>Git</li>
                         <li>Docker</li>
@@ -58,7 +58,7 @@ import { Icon } from 'astro-icon/components';
                     </ul>
                 </section>
                 <section class="skills">
-                    <h3>Design & Creative</h3>
+                    <h3>Design & Kreativt</h3>
                     <ul>
                         <li>Figma</li>
                         <li>Adobe Photoshop</li>
@@ -68,11 +68,11 @@ import { Icon } from 'astro-icon/components';
                 </section>
             </article>
             <article>
-                <h2>About the website</h2>
-                <p><Icon name="lucide:info" /> Built by me.</p>
-                <p><Icon name="lucide:code" /> Built with Astro, a modern open-source static site generator that ensures a fast and optimized experience for visitors.</p>
-                <p><Icon name="lucide:map-pin" /> Hosted in Oslo, Norway.</p>
-                <p><Icon name="lucide:leaf" /> Runs on green energy - verified by <a href="https://www.thegreenwebfoundation.org/green-web-check/?url=https%3A%2F%2Fsanderb.no" target="_blank" rel="noopener noreferrer">thegreenwebfoundation.org</a></p>
+                <h2>Om nettsiden</h2>
+                <p><Icon name="lucide:info" /> Bygget av meg.</p>
+                <p><Icon name="lucide:code" /> Bygget med Astro, en modern åpen kildekode statisk nettsted generator som sikrer en rask og optimaliseret opplevelse for besøkende.</p>
+                <p><Icon name="lucide:map-pin" /> Kjører på servere i Oslo, Norge.</p>
+                <p><Icon name="lucide:leaf" /> Kjører på grønn energi - verifisert av <a href="https://www.thegreenwebfoundation.org/green-web-check/?url=https%3A%2F%2Fsanderb.no" target="_blank" rel="noopener noreferrer">thegreenwebfoundation.org</a></p>
                 <img src="https://app.greenweb.org/api/v3/greencheckimage/sanderb.no?nocache=true" alt="This website runs on green hosting - verified by thegreenwebfoundation.org" width="200px" height="95px">
             </article>
         </div>

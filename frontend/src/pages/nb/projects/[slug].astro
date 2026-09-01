@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
-import '../../styles/project.css';
+import '../../../styles/project.css';
 
 export async function getStaticPaths() {
-    const projects = await getCollection('projects', ({ id }) => !id.startsWith('nb/'));
+    const projects = await getCollection('projects', ({ id }) => id.startsWith('nb/'));
 
 	return projects.map((project) => ({
-		params: { slug: project.id },
+        params: { slug: project.id.replace(/^nb\//, '') },
 		props: { project },
 	}));
 }
@@ -21,7 +21,7 @@ const localePrefix = Astro.currentLocale === 'nb' ? '/nb' : '';
 <BaseLayout>
 	<main class="project-page">
 		<article>
-            <p class="breadcrumb"><a href={`${localePrefix}/projects`} class="breadcrumb-link">Projects</a> /</p>
+            <p class="breadcrumb"><a href={`${localePrefix}/projects`} class="breadcrumb-link">Prosjekter</a> /</p>
 			<h1>{project.data.title}</h1>
 			<Image src={project.data.thumbnail} alt={project.data.title} />
 			<p>{project.data.description}</p>
@@ -29,7 +29,7 @@ const localePrefix = Astro.currentLocale === 'nb' ? '/nb' : '';
 				{project.data.tags.map((tag) => <li>{tag}</li>)}
 			</ul>
             <div class="project-links">
-				{project.data.liveUrl && <a href={project.data.liveUrl} target="_blank" rel="noreferrer"><img src="/gicon_globe.svg" alt="Globe icon" loading="lazy" />Live site<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
+				{project.data.liveUrl && <a href={project.data.liveUrl} target="_blank" rel="noreferrer"><img src="/gicon_globe.svg" alt="Globe icon" loading="lazy" />Live nettsted<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
 				{project.data.repoUrl && <a href={project.data.repoUrl} target="_blank" rel="noreferrer"><img src="/GitHub_Invertocat_Black.svg" alt="GitHub logo" loading="lazy" />Repository<img src="/gicon_open_in_new.svg" alt="Open in new tab" loading="lazy" /></a>}
 			</div>
             <div class="project-content">

@@ -1,31 +1,79 @@
 ---
+import { Icon } from 'astro-icon/components';
 const pathname = Astro.url.pathname;
-const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+const locale = Astro.currentLocale ?? 'en';
+const prefix = locale === 'nb' ? '/nb' : '';
 
+const normalizePath = (value: string) => value.replace(/\/+$/, '');
+
+const isCurrent = (href: string) => {
+    const currentPath = normalizePath(pathname);
+    const targetPath = normalizePath(href);
+    const currentBare = currentPath.startsWith('/nb') ? currentPath.replace(/^\/nb/, '') || '/' : currentPath;
+    const targetBare = targetPath.startsWith('/nb') ? targetPath.replace(/^\/nb/, '') || '/' : targetPath;
+
+    return currentPath === targetPath || currentBare === targetBare || currentPath.startsWith(`${targetPath}/`) || currentBare.startsWith(`${targetBare}/`);
+};
+
+const labels = {
+    projects: locale === 'nb' ? 'Prosjekter' : 'Projects',
+    about: locale === 'nb' ? 'Om' : 'About',
+    contact: locale === 'nb' ? 'Kontakt' : 'Contact',
+};
+
+const links = {
+    home: locale === 'nb' ? '/nb' : '/',
+    projects: `${prefix}/projects`,
+    about: `${prefix}/about`,
+    contact: `${prefix}/contact`,
+};
+
+const currentPagePath = pathname.replace(/^\/nb/, '') || '/';
+
+const languageSwitch = {
+    label: locale === 'nb' ? 'Switch to English' : 'Bytt til Norsk Bokmål',
+    href: locale === 'nb'
+        ? currentPagePath
+        : `/nb${currentPagePath === '/' ? '' : currentPagePath}`,
+    icon: locale === 'nb' ? 'circle-flags:en' : 'circle-flags:nb',
+	icon_mobile: locale === 'nb' ? 'circle-flags:gb' : 'circle-flags:no',
+};
 ---
 
 <header id="header">
-	<div id="header-right">
-		<a href="/"><img src="/SVB_logo.svg" alt="Logo" width="50" height="50" /></a>
-	</div>
-	<nav id="header-left">
-		<a href="/projects" class:list={{ current: isCurrent('/projects') }}>Projects</a>
-		<a href="/about" class:list={{ current: isCurrent('/about') }}>About</a>
-		<a href="/contact" class:list={{ current: isCurrent('/contact') }}>Contact</a>
-	</nav>
-	<nav id="burger-menu">
-		<!-- Burger menu implementation for mobile view -->
-		<div class="burger-icon" aria-label="Menu" role="button" tabindex="0">
-			<span></span>
-			<span></span>
-			<span></span>
+    <div id="header-right">
+        <a href={links.home}>
+            <img src="/SVB_logo.svg" alt="Logo" width="50" height="50" />
+        </a>
+    </div>
+
+    <nav id="header-left">
+		<div>
+			<a href={links.projects} class:list={{ current: isCurrent(links.projects) }}>{labels.projects}</a>
+			<a href={links.about} class:list={{ current: isCurrent(links.about) }}>{labels.about}</a>
+			<a href={links.contact} class:list={{ current: isCurrent(links.contact) }}>{labels.contact}</a>
+			
 		</div>
-		<div class="burger-menu-content" aria-label="Mobile menu" role="menu">
-			<a href="/projects" class:list={{ current: isCurrent('/projects') }}>Projects</a>
-			<a href="/about" class:list={{ current: isCurrent('/about') }}>About</a>
-			<a href="/contact" class:list={{ current: isCurrent('/contact') }}>Contact</a>
-		</div>
-	</nav>
+		<a class="language" title={languageSwitch.label} href={languageSwitch.href}><Icon name={languageSwitch.icon} /></a>
+    </nav>
+	
+
+    <nav id="burger-menu">
+        <div class="burger-icon" aria-label="Menu" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="burger-menu-content" aria-label="Mobile menu" role="menu">
+            <a href={links.projects} class:list={{ current: isCurrent(links.projects) }}>{labels.projects}</a>
+            <a href={links.about} class:list={{ current: isCurrent(links.about) }}>{labels.about}</a>
+            <a href={links.contact} class:list={{ current: isCurrent(links.contact) }}>{labels.contact}</a>
+			<a id="language-mobile" title={languageSwitch.label} href={languageSwitch.href}>
+				<Icon name={languageSwitch.icon_mobile} /> {languageSwitch.label}
+			</a>
+        </div>
+    </nav>
 </header>
 
 <script>
@@ -34,8 +82,20 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 	const burgerMenuIcon = document.querySelector('.burger-icon');
 
 	burgerIcon?.addEventListener('click', () => {
-		burgerMenuContent?.classList.toggle('active');
-		burgerMenuIcon?.classList.toggle('active');
+		
+		if (burgerMenuContent?.classList.contains('active')) {
+			burgerMenuContent?.classList.remove('active-height');
+			burgerMenuIcon?.classList.remove('active');
+			setTimeout(() => {
+				burgerMenuContent?.classList.remove('active');
+			}, 200);
+		} else {
+			burgerMenuContent?.classList.add('active');
+			burgerMenuIcon?.classList.add('active');
+			setTimeout(() => {
+				burgerMenuContent?.classList.add('active-height');
+			}, 0);
+		}
 	});
 </script>
 
@@ -48,6 +108,11 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		justify-content: space-between;
 		align-items: center;
     }
+
+	#header-left {
+		display: flex;
+		align-items: center;
+	}
 
 	#header-left a {
 		color: var(--text-color-primary);
@@ -81,6 +146,20 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		transform: translateX(-0.6rem);
 	}
 
+	#header-left .language:before {
+		content: '';
+	}
+
+	#header-left .language {
+		font-size: 1.2rem;
+		padding: 0.5rem 0.3rem 0.1rem 0.3rem;
+		transition: filter 0.3s;
+	}
+
+	#header-left .language:hover {
+		filter: brightness(0.9);
+	}
+
 	#burger-menu {
 		display: none;
 	}
@@ -98,7 +177,7 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		height: 3px;
 		background-color: var(--text-color-primary);
 		border-radius: 2px;
-		transition: transform 0.3s, opacity 0.3s;
+		transition: transform 0.2s, opacity 0.2s;
 	}
 
 	.burger-icon.active span:nth-child(1) {
@@ -121,14 +200,20 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 		right: 0;
 		background-color: var(--background-color);
 		width: 100vw;
-		height: calc(100vh - 70px);
+		height: 0;
 		z-index: 999;
 		overflow-y: auto;
-		border-bottom: 1px solid var(--ui-divider-color);
+		
+		transition: height 0.2s ease;
 	}
 
 	.burger-menu-content.active {
 		display: flex;
+	}
+
+	.burger-menu-content.active-height {
+		height: calc(100vh - 70px); /* fallback for older browsers */
+		height: calc(100dvh - 70px);
 	}
 
 	.burger-menu-content a {
@@ -142,6 +227,20 @@ const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${
 	.burger-menu-content a.current {
 		color: var(--main-theme-color);
 	}
+
+	#language-mobile {
+		display: flex;
+		justify-content: center;
+		gap: 0.4rem;
+		margin-top: auto;
+		border-top: 1px solid var(--ui-divider-color);
+	}
+
+	#language-mobile svg {
+		font-size: 1.2rem;
+	}
+
+
 
 	@media (max-width: 500px) {
 		#header-left {
